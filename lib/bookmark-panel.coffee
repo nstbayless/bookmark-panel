@@ -60,21 +60,22 @@ module.exports = BookmarkPanel =
 					@bookmarks = @bookmarks.concat(lconfig.bookmarks)
 				@bookmarks = @bookmarks.concat @defBookmarks
 
-				console.log "Default bookmarks: #{@defBookmarks.length}"
+				console.log "Default bookmarks: #{@bookmarks.length}"
 				console.log "Global bookmarks: #{gconfig.bookmarks.length}" if gconfig
 				console.log "Project bookmarks: #{lconfig.bookmarks.length}" if lconfig
 
 				matchingBookmarks = []
 				groups = []
 				for b in @bookmarks
-					b.filename = new RegExp(b.filename) if b.filename
-					if !b.filename or editor.getTitle().match(b.filename)
-						matchingBookmarks.push b
-						if b.group
-							groups.push {
-								group: b.group
-								elements: []
-							}
+					if typeof(b) != "undefined"
+						b.filename = new RegExp(b.filename) if b.filename
+						if !b.filename or editor.getTitle().match(b.filename)
+							matchingBookmarks.push b
+							if b.group
+								groups.push {
+									group: b.group
+									elements: []
+								}
 				showPanel = false
 				for i in [0..editor.getLineCount()]
 					text = editor.lineTextForBufferRow(i)
