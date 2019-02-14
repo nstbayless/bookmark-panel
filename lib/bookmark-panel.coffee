@@ -2,6 +2,7 @@ $ = require 'jquery'
 _ = require 'underscore'
 cson = require 'cson'
 fs = require 'fs'
+path = require 'path'
 
 {CompositeDisposable} = require 'atom'
 
@@ -14,7 +15,6 @@ module.exports = BookmarkPanel =
 		@enabled = true
 		@subscriptions = new CompositeDisposable
 		@subscriptions.add atom.commands.add 'atom-workspace', 'bookmark-panel:toggle': => @toggle()
-
 		@packageConfFile = atom.packages.resolvePackagePath('bookmark-panel') + path.sep + 'bookmark-config.coffee'
 		fs.readFile @packageConfFile, (err,data)=>
 			if data

@@ -1,7 +1,7 @@
 {
   "name": "bookmark-panel",
   "main": "./lib/bookmark-panel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Side panel with automatic, configurable anchors/bookmarks",
   "keywords": [
     "anchors",
